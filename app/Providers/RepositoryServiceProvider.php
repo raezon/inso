@@ -31,22 +31,18 @@ class RepositoryServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->registerDirection();
-        $this->registerEmployee();
-        $this->registerOrder();
-        $this->registerRequisition();
-        $this->registerSubDirection();
+
         $this->registerUser();
-        $this->registerVacation();
+ 
         //
         
 
     }
 
 
-    public function registerDirection()
+    public function registerAccouts()
     {
-        $this->app->bind(DirectionRepositoryInterface::class, DirectionRepository::class);
+        $this->app->bind(Accounts::class, DirectionRepository::class);
     }
     public function registerEmployee()
     {

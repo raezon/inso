@@ -1,12 +1,13 @@
 <?php
 
-use App\Events\Hello;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-
+use App\Http\Controllers\API\Shared\AuthController;
+use App\Http\Controllers\API\Shared\RoleController;
+use App\Http\Controllers\API\UserController;
 use Illuminate\Support\Facades\Session;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +20,10 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+Route::post('login', [AuthController::class, 'signin']);
+Route::post('register', [AuthController::class, 'signup']);
 
-     
-Route::middleware('auth:sanctum')->group( function () {
+Route::middleware('auth:sanctum')->group(function () {
     Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
 });
-

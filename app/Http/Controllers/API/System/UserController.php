@@ -4,7 +4,6 @@ namespace App\Http\Controllers\API;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
-use App\Interfaces\Repositories\SocialMediaRepositoryInterface;
 use App\Interfaces\Repositories\UserRepositoryInterface;
 use Validator;
 

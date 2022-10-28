@@ -1,10 +1,10 @@
 <?php
 
 use App\Events\Hello;
-use App\Http\Controllers\API\CarouselsController;
-use App\Http\Controllers\API\CurrentClientsController;
-use App\Http\Controllers\API\SettingsController;
-use App\Http\Controllers\API\SocialMediaController;
+use App\Http\Controllers\API\Shared\CarouselsController;
+use App\Http\Controllers\API\Shared\CurrentClientsController;
+use App\Http\Controllers\API\Shared\SettingsController;
+use App\Http\Controllers\API\Shared\SocialMediaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

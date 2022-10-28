@@ -3,9 +3,9 @@
 use Illuminate\Support\Facades\Route;
 
 
-use App\Http\Controllers\API\Shared\AuthController;
-use App\Http\Controllers\API\Shared\RoleController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\System\AuthController;
+use App\Http\Controllers\API\System\RoleController;
+use App\Http\Controllers\API\System\UserController;
 use Illuminate\Support\Facades\Session;
 
 

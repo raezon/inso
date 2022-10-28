@@ -1,14 +1,10 @@
 <?php
 
 use App\Events\Hello;
-use App\Http\Controllers\API\AccountsController;
-use App\Http\Controllers\API\CarouselsController;
-use App\Http\Controllers\API\CurrentClientsController;
-use App\Http\Controllers\API\HospitalController;
-use App\Http\Controllers\API\RequestUsersController;
-use App\Http\Controllers\API\SettingsController;
-use App\Http\Controllers\API\SocialMediaController;
-use App\Http\Controllers\API\SpecialityController;
+use App\Http\Controllers\API\Core\AccountsController;
+use App\Http\Controllers\API\Core\HospitalController;
+use App\Http\Controllers\API\Core\RequestUsersController;
+use App\Http\Controllers\API\Core\SpecialityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

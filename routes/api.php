@@ -1,6 +1,6 @@
 <?php
 
-use App\Events\Hello;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -21,7 +21,3 @@ use Illuminate\Support\Facades\Session;
 
 
      
-Route::middleware('auth:sanctum')->group( function () {
-    Route::resource('roles', RoleController::class);
-});
-

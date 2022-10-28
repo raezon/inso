@@ -37,7 +37,7 @@ class RoleController extends BaseController
       
 
         try {
-            $this->validate($request, [
+            $request->validate( [
                 'name' => 'required|unique:roles,name',
                 'permission' => 'required',
             ]);
@@ -64,7 +64,7 @@ class RoleController extends BaseController
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
             'permission' => 'required',
         ]);

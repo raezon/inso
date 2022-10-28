@@ -23,7 +23,7 @@ class CarouselsController extends BaseController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate( [
             'title' => 'required',
             'description' => 'required',
             'image' => 'required',

@@ -25,7 +25,7 @@ class AccountsController extends BaseController
     public function store(Request $request)
     {
    
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
             'surname' => 'required',
             'phone_number' => 'required',

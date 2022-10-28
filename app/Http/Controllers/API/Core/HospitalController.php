@@ -25,7 +25,7 @@ class HospitalController extends BaseController
     public function store(Request $request)
     {
 
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
             'image' => 'required',
             'phone_number' => 'required',

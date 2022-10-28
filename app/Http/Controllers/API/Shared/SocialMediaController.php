@@ -23,7 +23,7 @@ class SocialMediaController extends BaseController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
             'link' => 'required',
         ]);

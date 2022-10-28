@@ -23,7 +23,7 @@ class CurrentClientsController extends BaseController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate( [
             'name' => 'required',
             'image' => 'required',
         ]);

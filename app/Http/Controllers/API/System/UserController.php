@@ -23,15 +23,18 @@ class UserController extends BaseController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
             'password' => 'required',
         ]);
 
-        $dto = $request->all([]);
-        $result = $this->userRepository->create($dto);
-        return response()->json($result);
+        if ($validated) {
+            $dto = $request->all([]);
+            $result = $this->userRepository->create($dto);
+            return response()->json($result);
+        }
+        return redirect()->back()->withErrors($validated);
     }
 
     public function show($id)

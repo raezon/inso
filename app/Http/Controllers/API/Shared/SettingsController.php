@@ -23,7 +23,7 @@ class SettingsController extends BaseController
 
     public function store(Request $request)
     {
-        $this->validate($request, [
+        $request->validate( [
             'abouts_us' => 'required',
             'logo' => 'required',
         ]);

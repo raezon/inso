@@ -2,6 +2,7 @@
 
 use App\Events\Hello;
 use App\Http\Controllers\API\Core\AccountsController;
+use App\Http\Controllers\API\Core\CatalogueController;
 use App\Http\Controllers\API\Core\HospitalController;
 use App\Http\Controllers\API\Core\RequestUsersController;
 use App\Http\Controllers\API\Core\SpecialityController;
@@ -37,3 +38,5 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 Route::resource('request-user', RequestUsersController::class)->only(['store'
 ]);
+
+Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);

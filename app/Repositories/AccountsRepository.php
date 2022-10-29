@@ -3,7 +3,8 @@
 
 namespace App\Repositories;
 
-use App\Accounts;
+use App\Models\Accounts;
+use Illuminate\Support\Str;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
 use Illuminate\Http\Request;
 use App\Models\User;
@@ -23,6 +24,7 @@ class AccountsRepository implements AccountsRepositoryInterface
 
     public function create(array $data)
     {
+        $data['uuid']= Str::uuid();
         return Accounts::create($data);
     }
 

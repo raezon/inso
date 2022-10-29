@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\SpecialityRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class SpecialityController extends BaseController
@@ -29,6 +30,8 @@ class SpecialityController extends BaseController
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('speciality', $request->image);
+        $dto['image'] = $image;
         $result = $this->specialityRepository->create($dto);
         return response()->json($result);
     }
@@ -49,6 +52,10 @@ class SpecialityController extends BaseController
         ]);
 
         $data =  $this->specialityRepository->update($id, $record);
+        if ($request->input('image')) {
+            $image = Storage::disk('public')->put('speciality', $request->image);
+            $dto['image'] = $image;
+        }
 
         if ($data)
             return response()->json("updated succefuly");

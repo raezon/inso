@@ -17,5 +17,7 @@ php artisan make:command CustomStorageLinkCommand
 php artisan db:seed --class=PermissionTableSeeder
 php artisan db:seed --class=CreateAdminUserSeeder
 
+### List routes
+php artisan route:list
 ### Run websocket serve
 php artisan websockets:serve

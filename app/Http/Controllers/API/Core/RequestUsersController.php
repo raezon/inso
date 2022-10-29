@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\RequestUsersRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class RequestUsersController extends BaseController
@@ -31,6 +32,8 @@ class RequestUsersController extends BaseController
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('request-users', $request->card_id);
+        $dto['card_id'] = $image;
         $result = $this->requestUsersRepository->create($dto);
         return response()->json($result);
     }

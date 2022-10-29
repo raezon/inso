@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class AccountsController extends BaseController
@@ -36,6 +37,8 @@ class AccountsController extends BaseController
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('accounts', $request->card_id);
+        $dto['card_id'] = $image;
         $result = $this->accountsRepository->create($dto);
         return response()->json($result);
     }
@@ -61,7 +64,10 @@ class AccountsController extends BaseController
         ]);
 
         $data =  $this->accountsRepository->update($id, $record);
-
+        if ($request->input('image')) {
+            $image = Storage::disk('public')->put('accounts', $request->card_id);
+            $dto['card_id'] = $image;
+        }
         if ($data)
             return response()->json("updated succefuly");
         return response()->json("not updated");

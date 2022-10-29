@@ -28,6 +28,12 @@ use Illuminate\Support\Facades\Session;
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('account', AccountsController::class);
     Route::resource('hospital', HospitalController::class);
-    Route::resource('request-user', RequestUsersController::class);
+
+    Route::resource('request-user', RequestUsersController::class)->except([
+        'store'
+    ]);
+
     Route::resource('speciality', SpecialityController::class);
 });
+Route::resource('request-user', RequestUsersController::class)->only(['store'
+]);

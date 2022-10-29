@@ -62,12 +62,12 @@ class AccountsController extends BaseController
             'type' => 'required',
             'card_id' => 'required',
         ]);
-
-        $data =  $this->accountsRepository->update($id, $record);
         if ($request->input('image')) {
             $image = Storage::disk('public')->put('accounts', $request->card_id);
             $dto['card_id'] = $image;
         }
+        $data =  $this->accountsRepository->update($id, $record);
+
         if ($data)
             return response()->json("updated succefuly");
         return response()->json("not updated");

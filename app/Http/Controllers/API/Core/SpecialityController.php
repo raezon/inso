@@ -51,11 +51,12 @@ class SpecialityController extends BaseController
             'image' => 'required',
         ]);
 
-        $data =  $this->specialityRepository->update($id, $record);
         if ($request->input('image')) {
             $image = Storage::disk('public')->put('speciality', $request->image);
             $dto['image'] = $image;
         }
+        $data =  $this->specialityRepository->update($id, $record);
+
 
         if ($data)
             return response()->json("updated succefuly");

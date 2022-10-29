@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Adapter\Map;
+use App\Services\Google\GoogleService;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -19,6 +21,17 @@ use Illuminate\Database\Eloquent\Model;
  */
 class hospital extends Model
 {
+
+    public static function factoryUpdate($hospital,$request,$image)
+    {
+        $hospital->name = $request->input('name');
+        $hospital->phone_number = $request->input('phone_number');
+        $hospital->address = $request->input('address');
+        $hospital->speciality_id = $request->input('speciality_id');
+        $hospital->addCordinates();
+        $hospital->addImage($image);
+        return $hospital;
+    }
     /**
      * The table associated with the model.
      * 
@@ -43,6 +56,22 @@ class hospital extends Model
      */
     public function speciality()
     {
-        return $this->belongsTo('App\Speciality');
+        return $this->belongsTo('App\Models\Speciality');
+    }
+
+    public function addCordinates(){
+        $map = Map::make(GoogleService::class);
+
+        $result= $map->calculateCordinates($this->address)->first(function ($value, $key) {
+            return $value ;
+        });
+        $cordinates= $result->toArray();
+
+        $this->latitude= $cordinates['latitude'];
+        $this->longitude = $cordinates['longitude'];
+    }
+
+    public function addImage($image){
+        $this->image=$image;
     }
 }

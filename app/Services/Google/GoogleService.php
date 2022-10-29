@@ -11,9 +11,9 @@ class GoogleService implements GoogleMapContract
     {
         $this->addresse = app('geocoder');
     }
-    public function calculateCordinates(string $addresse): array
+    public function calculateCordinates(string $addresse): object
     {
-        return $this->addresse->geocode($addresse)->get()->toArray();
+        return $this->addresse->geocode($addresse)->get();
     }
     public function calculateDistance(array $cordinates1, array $cordinates2): float
     {

@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
 use App\Interfaces\Repositories\HospitalRepositoryInterface;
+use App\Models\hospital;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class HospitalController extends BaseController
@@ -34,7 +36,14 @@ class HospitalController extends BaseController
         ]);
 
         $dto = $request->all([]);
-        $result = $this->hospitalRepository->create($dto);
+        $image = Storage::disk('public')->put('hospitals', $request->image);
+        //kind of factory think on refactoring it
+
+        $hospital=new hospital($dto);
+        $hospital->addCordinates();
+        $hospital->addImage($image);
+       
+        $result = $this->hospitalRepository->create($hospital);
         return response()->json($result);
     }
 
@@ -47,7 +56,7 @@ class HospitalController extends BaseController
     public function update(Request $request, $id)
     {
 
-        $record = $request->only([
+        $record= $request->only([
             'id' => 'required',
             'name' => 'required',
             'image' => 'required',
@@ -55,8 +64,16 @@ class HospitalController extends BaseController
             'address' => 'required',
             'speciality_id' => 'required',
         ]);
-
-        $data =  $this->hospitalRepository->update($id, $record);
+  
+        if ($request->input('image')) {
+            $image = Storage::disk('public')->put('hospitals', $request->image);
+            
+        }
+      
+        //need factory
+        $hospital = $this->hospitalRepository->getById($id);
+        $hospital::factoryUpdate($hospital,$request,$image);
+        $data =  $this->hospitalRepository->update($hospital);
 
         if ($data)
             return response()->json("updated succefuly");

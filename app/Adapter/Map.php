@@ -11,7 +11,6 @@ class Map{
     }
     public function calculateCordinates(string $addresse)
     {
-        dd($this->api->calculateCordinates($addresse));
         return $this->api->calculateCordinates($addresse);
     }
 }

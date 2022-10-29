@@ -20,14 +20,14 @@ class HospitalRepository implements HospitalRepositoryInterface
     }
 
 
-    public function create(array $data)
+    public function create(object $hospital)
     {
-        return hospital::create($data);
+        return $hospital->save();
     }
 
-    public function update($id, array $data)
+    public function update(object $hospital)
     {
-        return hospital::where('id', $id)->update($data);
+        return $hospital->save();
     }
 
     public function deleteById($id)

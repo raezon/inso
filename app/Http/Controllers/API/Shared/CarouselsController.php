@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\API\Shared;
 
+use App\Adapter\Map;
+use App\Contracts\GoogleMapContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
+use App\Services\Google\GoogleService;
 use Validator;
 
 class CarouselsController extends BaseController
@@ -16,14 +19,14 @@ class CarouselsController extends BaseController
 
     public function index()
     {
-        $results = $this->carouselsRepository->getAll();
-
-        return response()->json($results);
+        $map = Map::make(GoogleService::class);
+        $result = $map->calculateCordinates('Los Angeles, CA');
+        return response()->json($result);
     }
 
     public function store(Request $request)
     {
-        $request->validate( [
+        $request->validate([
             'title' => 'required',
             'description' => 'required',
             'image' => 'required',

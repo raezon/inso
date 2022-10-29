@@ -185,7 +185,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Geocoder\Laravel\Providers\GeocoderService::class,
         /*
          * Application Service Providers...
          */

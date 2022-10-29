@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\API\Shared;
 
-use App\Adapter\Map;
-use App\Contracts\GoogleMapContract;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
-use App\Services\Google\GoogleService;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class CarouselsController extends BaseController
@@ -19,9 +17,8 @@ class CarouselsController extends BaseController
 
     public function index()
     {
-        $map = Map::make(GoogleService::class);
-        $result = $map->calculateCordinates('Los Angeles, CA');
-        return response()->json($result);
+        $results = $this->carouselsRepository->getAll();
+        return response()->json($results);
     }
 
     public function store(Request $request)
@@ -34,6 +31,10 @@ class CarouselsController extends BaseController
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('carousels', $request->image);
+        
+        $dto['image']=$image;
+
         $result = $this->carouselsRepository->create($dto);
         return response()->json($result);
     }
@@ -48,12 +49,15 @@ class CarouselsController extends BaseController
     {
 
         $record = $request->only([
-            'id' => 'required',
             'title' => 'required',
             'description' => 'required',
-            'image' => 'required',
             'link' => 'required',
         ]);
+        //logic
+        if($request->input('image')){
+            $image = Storage::disk('public')->put('carousels', $request->image);
+            $dto['image'] = $image;
+        }
 
         $data =  $this->carouselsRepository->update($id, $record);
 

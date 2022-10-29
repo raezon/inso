@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Shared;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\SettingsRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class SettingsController extends BaseController
@@ -24,11 +25,14 @@ class SettingsController extends BaseController
     public function store(Request $request)
     {
         $request->validate( [
-            'abouts_us' => 'required',
+            'about_us' => 'required',
             'logo' => 'required',
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('settings', $request->logo);
+        $dto['logo'] = $image;
+
         $result = $this->settingsRepository->create($dto);
         return response()->json($result);
     }
@@ -44,9 +48,14 @@ class SettingsController extends BaseController
 
         $record = $request->only([
             'id' => 'required',
-            'abouts_us' => 'required',
+            'about_us' => 'required',
             'logo' => 'required',
         ]);
+
+        if ($request->input('image')) {
+            $image = Storage::disk('public')->put('settings', $request->logo);
+            $dto['logo'] = $image;
+        }
 
         $data =  $this->settingsRepository->update($id, $record);
 

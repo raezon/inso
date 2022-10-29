@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Shared;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CurrentClientsRepositoryInterface;
+use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class CurrentClientsController extends BaseController
@@ -29,6 +30,9 @@ class CurrentClientsController extends BaseController
         ]);
 
         $dto = $request->all([]);
+        $image = Storage::disk('public')->put('current-clients', $request->image);
+        $dto['image']=$image;
+        
         $result = $this->currentClientsRepository->create($dto);
         return response()->json($result);
     }
@@ -43,12 +47,16 @@ class CurrentClientsController extends BaseController
     {
 
         $record = $request->only([
-            'id' => 'required',
             'name' => 'required',
             'image' => 'required',
         ]);
 
         $data =  $this->currentClientsRepository->update($id, $record);
+
+        if ($request->input('image')) {
+            $image = Storage::disk('public')->put('current-clients', $request->image);
+            $dto['image'] = $image;
+        }
 
         if ($data)
             return response()->json("updated succefuly");

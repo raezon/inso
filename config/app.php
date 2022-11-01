@@ -199,6 +199,7 @@ return [
          */
         App\Providers\RepositoryServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        FruitCake\Cors\CorsServiceProvider::class,
 
     ],
 

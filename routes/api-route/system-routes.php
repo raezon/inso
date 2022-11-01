@@ -20,6 +20,7 @@ use Illuminate\Support\Facades\Session;
 |
 */
 
+
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
 

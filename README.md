@@ -10,6 +10,8 @@ php artisan make:resource UserResource
 ### Generate ressource controller example
 php artisan make:controller sharkController --resource 
 
+### link storage
+php artisan storage:link
 ### Generate CustomStorageLinkCommand
 php artisan make:command CustomStorageLinkCommand
 

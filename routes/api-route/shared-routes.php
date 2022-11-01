@@ -26,8 +26,14 @@ use Illuminate\Support\Facades\Session;
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('carousels', CarouselsController::class);
+
+    Route::resource('carousels', CarouselsController::class)->only([
+        'Post','Patch','Delete'
+    ]);
     Route::resource('current-clients', CurrentClientsController::class);
     Route::resource('settings', SettingsController::class);
     Route::resource('social-media', SocialMediaController::class);
 });
+Route::resource('carousels', CarouselsController::class)->except([
+    'Get'
+]);

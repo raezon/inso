@@ -27,16 +27,29 @@ use Illuminate\Support\Facades\Session;
 
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::resource('account', AccountsController::class);
-    Route::resource('hospital', HospitalController::class);
 
-    Route::resource('request-user', RequestUsersController::class)->except([
-        'store'
+    Route::resource('account', AccountsController::class);
+
+    Route::resource('hospital', HospitalController::class)->only([
+        'Post', 'Patch', 'Delete'
+    ]);
+    Route::resource('request-user', RequestUsersController::class)->only([
+        'Patch', 'Delete'
     ]);
 
-    Route::resource('speciality', SpecialityController::class);
+    Route::resource('speciality', SpecialityController::class)->only([
+        'Post', 'Patch', 'Delete'
+    ]);;
 });
-Route::resource('request-user', RequestUsersController::class)->only(['store'
+/** without authentificaiton */
+Route::resource('hospital', HospitalController::class)->except([
+    'GET'
+]);
+Route::resource('request-user', RequestUsersController::class)->except([
+    'Post'
+]);
+Route::resource('speciality', SpecialityController::class)->except([
+    'Get'
 ]);
 
 Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);

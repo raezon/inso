@@ -31,7 +31,7 @@ class CatalogueController extends BaseController
             }
         })
             ->when($request->long and $request->lat, function ($query) use ($request) {
-                $query->addSelect(DB::raw("name ,longitude,latitude,image,round(ST_Distance_Sphere(
+                $query->addSelect(DB::raw("name,phone_number,address ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)
                     )/ 1000, 0) as distance"))
 

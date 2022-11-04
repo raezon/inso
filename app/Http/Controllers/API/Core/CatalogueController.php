@@ -21,12 +21,16 @@ class CatalogueController extends BaseController
 
     public function getHospitalBySpeciality(Request $request)
     {
-        $nameSpeciality = $request->input('nameSpeciality') ? $request->input('nameSpeciality') : null;
-        $nameHospital = $request->input('nameHospital') ? $request->input('nameHospital') : null;
-
+        $nameSpeciality = $request->nameSpeciality ? $request->nameSpeciality : null;
+        $nameHospital = $request->nameHospital ? $request->nameHospital : null;
+        $pageCount = $request->pageCount ;
 
         $result = hospital::whereHas('speciality', function ($q) use ($nameSpeciality) {
-            $q->orWhere('name', '=', $nameSpeciality);
+            if($nameSpeciality){
+                $q->where('hospital.name',$nameSpeciality)
+					->orWhere('speciality.name',$nameSpeciality);
+            }
+            
         })
             ->when($request->long and $request->lat, function ($query) use ($request) {
                 $query->addSelect(DB::raw("name ,longitude,latitude,image,round(ST_Distance_Sphere(
@@ -35,8 +39,7 @@ class CatalogueController extends BaseController
 
                     ->orderBy('distance');
             })
-            ->orWhere('name',$nameHospital)
-            ->take(9)
+            ->limit($pageCount)
             ->get();
 
 

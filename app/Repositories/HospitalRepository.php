@@ -3,7 +3,7 @@
 
 namespace App\Repositories;
 
-use App\Models\hospital;
+use App\Models\Hospital;
 use App\Interfaces\Repositories\HospitalRepositoryInterface;
 
 
@@ -11,12 +11,12 @@ class HospitalRepository implements HospitalRepositoryInterface
 {
     public function getAll()
     {
-        return hospital::all();
+        return Hospital::all();
     }
 
     public function getById($id)
     {
-        return hospital::find($id);
+        return Hospital::find($id);
     }
 
 
@@ -32,6 +32,6 @@ class HospitalRepository implements HospitalRepositoryInterface
 
     public function deleteById($id)
     {
-        return hospital::destroy($id);
+        return Hospital::destroy($id);
     }
 }

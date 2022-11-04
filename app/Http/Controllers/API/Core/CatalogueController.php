@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
-use App\Models\hospital;
+use App\Models\Hospital ;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Validator;
@@ -24,7 +24,7 @@ class CatalogueController extends BaseController
         $name = $request->name ? $request->name : null;
         $pageCount = $request->pageCount;
 
-        $result = hospital::whereHas('speciality', function ($q) use ($name) {
+        $result = Hospital::whereHas('speciality', function ($q) use ($name) {
             if ($name) {
                 $q->where('hospital.name', 'LIKE', "%{$name}%")
                     ->orWhere('speciality.name', 'LIKE', "%{$name}%");

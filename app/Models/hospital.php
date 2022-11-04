@@ -17,21 +17,12 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $longitude
  * @property string $created_at
  * @property string $updated_at
+ * @property string $country
+ * @property string $wilaya
  * @property Speciality $speciality
  */
-class hospital extends Model
+class Hospital extends Model
 {
-
-    public static function factoryUpdate($hospital,$request,$image)
-    {
-        $hospital->name = $request->input('name');
-        $hospital->phone_number = $request->input('phone_number');
-        $hospital->address = $request->input('address');
-        $hospital->speciality_id = $request->input('speciality_id');
-        $hospital->addCordinates();
-        $hospital->addImage($image);
-        return $hospital;
-    }
     /**
      * The table associated with the model.
      * 
@@ -49,7 +40,7 @@ class hospital extends Model
     /**
      * @var array
      */
-    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at'];
+    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -59,19 +50,31 @@ class hospital extends Model
         return $this->belongsTo('App\Models\Speciality');
     }
 
-    public function addCordinates(){
+    public function addCordinates()
+    {
         $map = Map::make(GoogleService::class);
 
-        $result= $map->calculateCordinates($this->address)->first(function ($value, $key) {
-            return $value ;
+        $result = $map->calculateCordinates($this->address)->first(function ($value, $key) {
+            return $value;
         });
-        $cordinates= $result->toArray();
+        $cordinates = $result->toArray();
 
-        $this->latitude= $cordinates['latitude'];
+        $this->latitude = $cordinates['latitude'];
         $this->longitude = $cordinates['longitude'];
     }
 
-    public function addImage($image){
-        $this->image=$image;
+    public function addImage($image)
+    {
+        $this->image = $image;
+    }
+    public static function factoryUpdate($hospital, $request, $image)
+    {
+        $hospital->name = $request->input('name');
+        $hospital->phone_number = $request->input('phone_number');
+        $hospital->address = $request->input('address');
+        $hospital->speciality_id = $request->input('speciality_id');
+        $hospital->addCordinates();
+        $hospital->addImage($image);
+        return $hospital;
     }
 }

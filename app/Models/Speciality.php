@@ -38,6 +38,6 @@ class Speciality extends Model
      */
     public function hospitals()
     {
-        return $this->hasMany('App\Hospital');
+        return $this->hasMany('App\Models\Hospital');
     }
 }

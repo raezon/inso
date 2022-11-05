@@ -72,6 +72,8 @@ class Hospital extends Model
         $hospital->name = $request->input('name');
         $hospital->phone_number = $request->input('phone_number');
         $hospital->address = $request->input('address');
+        $hospital->country = $request->input('country');
+        $hospital->wilaya = $request->input('wilaya');
         $hospital->speciality_id = $request->input('speciality_id');
         $hospital->addCordinates();
         $hospital->addImage($image);

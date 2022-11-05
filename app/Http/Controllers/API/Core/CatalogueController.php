@@ -5,11 +5,9 @@ namespace App\Http\Controllers\API\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
-use App\Interfaces\Repositories\CarouselsRepositoryInterface;
-use App\Models\Hospital ;
+use App\Models\Hospital;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Storage;
-use Validator;
+
 
 class CatalogueController extends BaseController
 {
@@ -26,20 +24,29 @@ class CatalogueController extends BaseController
         $wilaya = $request->wilaya ? $request->wilaya : null;
         $pageCount = $request->pageCount;
 
-        $result = Hospital::whereHas('speciality', function ($q) use ($name,$country,$wilaya) {
+        $result = Hospital::whereHas('speciality', function ($q) use ($name) {
             if ($name) {
-                $q->where('hospital.name', 'LIKE', "%{$name}%")
-                    ->orWhere('hospital.country', '=', "$country")
-                    ->orWhere('hospital.wilaya', '=', "$wilaya")
+                $q
+                    ->where('hospital.name', 'LIKE', "%{$name}%")
                     ->orWhere('speciality.name', 'LIKE', "%{$name}%");
             }
         })
-            ->when($request->long and $request->lat, function ($query) use ($request) {
-                $query->addSelect(DB::raw("name,phone_number,address ,longitude,latitude,image,round(ST_Distance_Sphere(
+            ->when($request->long and $request->lat, function ($query) use ($request, $country, $wilaya) {
+                if (!$country and !$wilaya) {
+                    $query->addSelect(DB::raw("name,phone_number,address,country,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)
                     )/ 1000, 0) as distance"))
 
-                    ->orderBy('distance');
+                        ->orderBy('distance');
+                }
+            })
+            ->when($country, function ($query) use ($country) {
+
+                $query->where('country', '=', $country);
+            })
+            ->when($wilaya, function ($query) use ($wilaya) {
+
+                $query->where('wilaya', '=', $wilaya);
             })
             ->limit($pageCount)
             ->get();

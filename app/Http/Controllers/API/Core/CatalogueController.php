@@ -22,11 +22,15 @@ class CatalogueController extends BaseController
     public function getHospitalBySpeciality(Request $request)
     {
         $name = $request->name ? $request->name : null;
+        $country = $request->country ? $request->country : null;
+        $wilaya = $request->wilaya ? $request->wilaya : null;
         $pageCount = $request->pageCount;
 
-        $result = Hospital::whereHas('speciality', function ($q) use ($name) {
+        $result = Hospital::whereHas('speciality', function ($q) use ($name,$country,$wilaya) {
             if ($name) {
                 $q->where('hospital.name', 'LIKE', "%{$name}%")
+                    ->orWhere('hospital.country', '=', "$country")
+                    ->orWhere('hospital.wilaya', '=', "$wilaya")
                     ->orWhere('speciality.name', 'LIKE', "%{$name}%");
             }
         })

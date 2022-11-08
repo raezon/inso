@@ -38,7 +38,6 @@ class HospitalController extends BaseController
         $dto = $request->all([]);
         $image = Storage::disk('public')->put('hospitals', $request->image);
         //kind of factory think on refactoring it
-
         $hospital=new hospital($dto);
         $hospital->addCordinates();
         $hospital->addImage($image);

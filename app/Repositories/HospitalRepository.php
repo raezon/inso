@@ -11,7 +11,7 @@ class HospitalRepository implements HospitalRepositoryInterface
 {
     public function getAll()
     {
-        return Hospital::all();
+        return Hospital::paginate(8);
     }
 
     public function getById($id)

@@ -53,3 +53,7 @@ Route::resource('speciality', SpecialityController::class)->except([
 ]);
 
 Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);
+
+Route::post('speciality/findByPaginate', [SpecialityController::class, 'findByPaginate']);
+
+Route::post('request-user/findByUuid', [RequestUsersController::class, 'findOneByUuid']);

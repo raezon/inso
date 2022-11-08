@@ -8,6 +8,7 @@ interface AccountsRepositoryInterface
 {
     public function getAll();
     public function getById($accountId);
+    public function getByUuid($uuid);
     public function deleteById($account);
     public function create(array $dto);
     public function update($accountId, array $account);

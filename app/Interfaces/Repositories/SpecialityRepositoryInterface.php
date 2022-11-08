@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 interface SpecialityRepositoryInterface
 {
+    public function findByPaginate();
     public function getAll();
     public function getById($specialityId);
     public function deleteById($speciality);

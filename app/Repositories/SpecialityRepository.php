@@ -7,6 +7,10 @@ use App\Models\Speciality;
 
 class SpecialityRepository implements SpecialityRepositoryInterface
 {
+    public function findByPaginate(){
+        return Speciality::paginate(8);
+    }
+
     public function getAll()
     {
         return Speciality::all();

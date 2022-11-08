@@ -22,6 +22,13 @@ class SpecialityController extends BaseController
         return response()->json($results);
     }
 
+    public function findByPaginate(){
+        
+        $results = $this->specialityRepository->findByPaginate();
+
+        return response()->json($results);
+    }
+
     public function store(Request $request)
     {
         $request->validate( [

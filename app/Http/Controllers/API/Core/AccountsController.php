@@ -42,6 +42,11 @@ class AccountsController extends BaseController
         $result = $this->accountsRepository->create($dto);
         return response()->json($result);
     }
+    public function findOneByUuid($uuid)
+    {
+        $result = $this->accountsRepository->getByUuid($uuid);
+        return response()->json($result);
+    }
 
     public function show($id)
     {

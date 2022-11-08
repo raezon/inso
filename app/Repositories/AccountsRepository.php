@@ -13,7 +13,7 @@ class AccountsRepository implements AccountsRepositoryInterface
 {
     public function getAll()
     {
-        return Accounts::all();
+        return Accounts::paginate(8);
     }
 
     public function getById($id)
@@ -21,6 +21,11 @@ class AccountsRepository implements AccountsRepositoryInterface
         return Accounts::find($id);
     }
 
+    public function getByUuid($uuid)
+    {
+        return Accounts::where(['uuid', $uuid]);
+    }
+    
 
     public function create(array $data)
     {

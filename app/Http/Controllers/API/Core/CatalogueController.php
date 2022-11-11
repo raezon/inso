@@ -48,8 +48,7 @@ class CatalogueController extends BaseController
 
                 $query->where('wilaya', '=', $wilaya);
             })
-            ->page($pageCount)
-            ->get();
+            ->page($pageCount);
 
 
 

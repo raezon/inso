@@ -9,7 +9,7 @@ class RequestUsersRepository implements  RequestUsersRepositoryInterface
 {
     public function getAll()
     {
-        return RequestUsers::all();
+        return RequestUsers::paginate(5);
     }
 
     public function getById($id)

@@ -56,4 +56,4 @@ Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpecia
 
 Route::post('speciality/findByPaginate', [SpecialityController::class, 'findByPaginate']);
 
-Route::post('request-user/findByUuid', [RequestUsersController::class, 'findOneByUuid']);
+Route::post('account/findByUuid', [AccountsController::class, 'findOneByUuid']);

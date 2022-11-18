@@ -24,7 +24,7 @@ class AccountsRepository implements AccountsRepositoryInterface
     public function getByUuid($uuid)
     {
 
-        return Accounts::where('uuid','=', $uuid);
+        return Accounts::where('uuid', $uuid);
     }
     
 

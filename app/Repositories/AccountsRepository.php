@@ -23,8 +23,8 @@ class AccountsRepository implements AccountsRepositoryInterface
 
     public function getByUuid($uuid)
     {
-
-        return Accounts::where('uuid', $uuid);
+        $uuid=(string)$uuid;
+        return Accounts::where(['uuid'=> $uuid])->first();
     }
     
 

@@ -10,6 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $surname
  * @property string $phone_number
  * @property string $card_id
+ * @property string $type
  * @property string $created_at
  * @property string $updated_at
  */
@@ -32,5 +33,5 @@ class RequestUsers extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'surname', 'phone_number', 'card_id', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'surname','type', 'phone_number', 'card_id', 'created_at', 'updated_at'];
 }

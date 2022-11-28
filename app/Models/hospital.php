@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $image
  * @property string $address
+ * @property string $address_url
  * @property string $phone_number
  * @property string $latitude
  * @property string $longitude
@@ -40,7 +41,7 @@ class Hospital extends Model
     /**
      * @var array
      */
-    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
+    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'address_url', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -72,6 +73,7 @@ class Hospital extends Model
         $hospital->name = $request->input('name');
         $hospital->phone_number = $request->input('phone_number');
         $hospital->address = $request->input('address');
+        $hospital->address_url = $request->input('address_url');
         $hospital->country = $request->input('country');
         $hospital->wilaya = $request->input('wilaya');
         $hospital->speciality_id = $request->input('speciality_id');

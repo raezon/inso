@@ -28,6 +28,7 @@ class RequestUsersController extends BaseController
             'name' => 'required',
             'surname' => 'required',
             'phone_number' => 'required',
+            'type' => 'required',
             'card_id' => 'required',
         ]);
 

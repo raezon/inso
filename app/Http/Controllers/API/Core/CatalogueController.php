@@ -24,7 +24,7 @@ class CatalogueController extends BaseController
         $wilaya = $request->wilaya ? $request->wilaya : null;
         //  $pageCount = $request->pageCount;
         $pageCount = 8;
-        $result = Hospital::whereHas('speciality', function ($q) use ($name) {
+        $result = Hospital::whereHas('specialities', function ($q) use ($name) {
             if ($name) {
                 $q
                     ->where('hospital.name', 'LIKE', "%{$name}%")

@@ -49,6 +49,8 @@ class HospitalController extends BaseController
     public function show($id)
     {
         $result = $this->hospitalRepository->getById($id);
+        dd($result->specialities[0]->name);
+
         return response()->json($result);
     }
 

@@ -33,11 +33,9 @@ class Speciality extends Model
      */
     protected $fillable = ['name', 'image', 'created_at', 'updated_at'];
 
-    /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
+
     public function hospitals()
     {
-        return $this->hasMany('App\Models\Hospital');
+        return $this->belongsToMany(Hospital::class, 'hospital_speciality', 'speciality_id', 'hospital_id');
     }
 }

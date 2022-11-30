@@ -44,11 +44,11 @@ class Hospital extends Model
     protected $fillable = ['speciality_id', 'name', 'image', 'address', 'address_url', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function speciality()
+    public function specialities()
     {
-        return $this->belongsTo('App\Models\Speciality');
+        return $this->belongsToMany(Speciality::class, 'hospital_speciality','hospital_id','speciality_id');
     }
 
     public function addCordinates()

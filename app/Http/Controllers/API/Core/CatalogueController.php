@@ -23,7 +23,7 @@ class CatalogueController extends BaseController
         $country = $request->country ? $request->country : null;
         $wilaya = $request->wilaya ? $request->wilaya : null;
         //  $pageCount = $request->pageCount;
-        $pageCount = 8;
+        $pageCount = 100;
         $result = Hospital::whereHas('specialities', function ($q) use ($name) {
             if ($name) {
                 $q

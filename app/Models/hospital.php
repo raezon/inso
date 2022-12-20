@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $name
  * @property string $image
  * @property string $address
+ * @property string $address_displayed
  * @property string $address_url
  * @property string $phone_number
  * @property string $latitude
@@ -41,7 +42,7 @@ class Hospital extends Model
     /**
      * @var array
      */
-    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'address_url', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
+    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

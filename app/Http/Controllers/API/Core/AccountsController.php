@@ -45,6 +45,8 @@ class AccountsController extends BaseController
     public function findOneByUuid($uuid)
     {
         $result = $this->accountsRepository->getByUuid($uuid);
+        $result['couples']= array_values(json_decode($result['couples'],true));
+        $result['childrens'] = array_values(json_decode($result['childrens'], true)) ;
         return response()->json($result);
     }
 

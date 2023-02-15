@@ -14,6 +14,9 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $addresse
  * @property string $type
  * @property string $card_id
+ * @property string $pourcent
+ * @property string $couples
+ * @property string $childrens
  * @property string $created_at
  * @property string $updated_at
  */
@@ -29,5 +32,5 @@ class Accounts extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'name', 'surname', 'phone_number', 'birthdate', 'addresse', 'type', 'card_id', 'created_at', 'updated_at'];
+    protected $fillable = ['uuid', 'name', 'surname', 'phone_number', 'birthdate', 'addresse', 'type', 'card_id', 'pourcent', 'childrens','couples', 'created_at', 'updated_at'];
 }

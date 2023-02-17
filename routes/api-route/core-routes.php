@@ -2,6 +2,7 @@
 
 use App\Events\Hello;
 use App\Http\Controllers\API\Core\AccountsController;
+use App\Http\Controllers\API\Core\AppointementController;
 use App\Http\Controllers\API\Core\CatalogueController;
 use App\Http\Controllers\API\Core\HospitalController;
 use App\Http\Controllers\API\Core\RequestUsersController;
@@ -57,3 +58,5 @@ Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpecia
 Route::post('speciality/findByPaginate', [SpecialityController::class, 'findByPaginate']);
 
 Route::get('account/findByUuid/{uuid}', [AccountsController::class, 'findOneByUuid']);
+
+Route::post('appointement/create', [AppointementController::class, 'store']);

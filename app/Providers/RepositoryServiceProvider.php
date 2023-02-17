@@ -5,6 +5,7 @@ namespace App\Providers;
 use App\Carousels;
 use App\CurrentClients;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
+use App\Interfaces\Repositories\AppointementRepositoryInterface;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
 use App\Interfaces\Repositories\CurrentClientsRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
@@ -16,6 +17,7 @@ use App\Interfaces\Repositories\SpecialityRepositoryInterface;
 use App\Interfaces\Repositories\UserRepositoryInterface;
 //repositories
 use App\Repositories\AccountsRepository;
+use App\Repositories\AppointementRepository;
 use App\Repositories\CarouselsRepository;
 use App\Repositories\CurrentClientsRepository;
 use App\Repositories\HospitalRepository;
@@ -46,6 +48,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerSettings();
         $this->registerSocialMedia();
         $this->registerSpeciality();
+        $this->registerAppointement();
     }
 
     public function registerUser()
@@ -87,6 +90,10 @@ class RepositoryServiceProvider extends ServiceProvider
     public function registerSpeciality()
     {
         $this->app->bind(SpecialityRepositoryInterface::class, SpecialityRepository::class);
+    }
+    public function registerAppointement()
+    {
+        $this->app->bind(AppointementRepositoryInterface::class, AppointementRepository::class);
     }
    
     /**

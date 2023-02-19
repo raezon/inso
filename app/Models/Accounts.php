@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $uuid
  * @property string $name
  * @property string $surname
+ * @property string $age
+ * @property string $gender
  * @property string $phone_number
  * @property string $birthdate
  * @property string $addresse
@@ -32,5 +34,5 @@ class Accounts extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'name', 'surname', 'phone_number', 'birthdate', 'addresse', 'type', 'card_id', 'pourcent', 'childrens','couples', 'created_at', 'updated_at'];
+    protected $fillable = ['uuid', 'name', 'surname','age','gender', 'phone_number', 'birthdate', 'addresse', 'type', 'card_id', 'pourcent', 'childrens','couples', 'created_at', 'updated_at'];
 }

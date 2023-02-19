@@ -16,6 +16,7 @@ class AuthController extends BaseController
             $authUser = Auth::user(); 
             $success['token'] =  $authUser->createToken('MyAuthApp')->plainTextToken; 
             $success['name'] =  $authUser->name;
+            $success['id'] =  $authUser->id;
    
             return $this->sendResponse($success, 'User signed in');
         } 
@@ -41,6 +42,7 @@ class AuthController extends BaseController
         $user = User::create($input);
         $success['token'] =  $user->createToken('MyAuthApp')->plainTextToken;
         $success['name'] =  $user->name;
+
    
         return $this->sendResponse($success, 'User created successfully.');
     }

@@ -25,7 +25,7 @@ class AccountsRepository implements AccountsRepositoryInterface
     {
         $uuid=(string)$uuid;
        
-        return Accounts::where('accounts.uuid', 'LIKE', "%{$uuid}%")->first();
+        return Accounts::where('accounts.uuid',$uuid)->first();
     }
     
 

@@ -22,14 +22,14 @@ class AppointementController extends BaseController
     public function store(Request $request)
     {
 
-        $request->validate([
+      /*  $request->validate([
             'priceReduced' => 'required',
             'price' => 'required',
             'couples' => 'required',
             'childrens' => 'required',
             'acount_id' => 'required',
             'doctor_id' => 'required',
-        ]);
+        ]);*/
 
         $dto = $request->all([]);
         $result = $this->appointementRepository->create($dto);

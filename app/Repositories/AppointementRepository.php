@@ -23,6 +23,9 @@ class AppointementRepository implements AppointementRepositoryInterface
 
     public function create(array $data)
     {
+        $data['childrens']=json_encode($data['childrens'],true);
+        $data['couples'] = json_encode($data['couples'], true);
+        $data['patient_identity'] = json_encode($data['patient_identity'], true);
         return Appointement::create($data);
     }
 

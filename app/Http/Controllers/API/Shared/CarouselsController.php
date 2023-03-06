@@ -5,19 +5,23 @@ namespace App\Http\Controllers\API\Shared;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
+use App\Stripe\StripeAPI;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class CarouselsController extends BaseController
 {
-    public function __construct(CarouselsRepositoryInterface $carouselsRepositoryInterface)
+    public $stripeAPI;
+    public function __construct(CarouselsRepositoryInterface $carouselsRepositoryInterface,StripeAPI $stripeAPI)
     {
         $this->carouselsRepository = $carouselsRepositoryInterface;
+        $this->stripeAPI= $stripeAPI;
     }
 
     public function index()
     {
         $results = $this->carouselsRepository->getAll();
+        $this->stripeAPI->charge(200);
         return response()->json($results);
     }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Providers\stripeServiceProvider;
 use Illuminate\Support\Facades\Facade;
 
 return [
@@ -200,6 +201,14 @@ return [
         App\Providers\RepositoryServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         FruitCake\Cors\CorsServiceProvider::class,
+        /**
+         * Aditional services buisness logic
+         */
+
+        App\Providers\StripeServiceProvider::class,
+    
+       
+
 
     ],
 

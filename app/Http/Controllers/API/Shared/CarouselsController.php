@@ -5,23 +5,28 @@ namespace App\Http\Controllers\API\Shared;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
-use App\Stripe\StripeAPI;
+use App\Services\Stripe\OrderService;
+//use App\Services\Stripe\OrderService;
+use App\Services\Stripe\StripeService;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
 class CarouselsController extends BaseController
 {
     public $stripeAPI;
-    public function __construct(CarouselsRepositoryInterface $carouselsRepositoryInterface,StripeAPI $stripeAPI)
+    public $orderService;
+    public function __construct(CarouselsRepositoryInterface $carouselsRepositoryInterface,StripeService $stripeService,OrderService $orderService)
     {
         $this->carouselsRepository = $carouselsRepositoryInterface;
-        $this->stripeAPI= $stripeAPI;
+        $this->stripeAPI= $stripeService;
+        $this->orderService= $orderService;
     }
 
     public function index()
     {
         $results = $this->carouselsRepository->getAll();
-        $this->stripeAPI->charge(200);
+        $this->stripeAPI->charge(123);
+        $this->orderService->discount();
         return response()->json($results);
     }
 

@@ -1,6 +1,7 @@
 <?php
 namespace App\Models;
 
+use App\Events\UserCreatingEvent;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
@@ -11,6 +12,11 @@ use Laravel\Sanctum\HasApiTokens;
 class User extends Authenticatable
 {
     use HasApiTokens, HasRoles, HasFactory, Notifiable;
+
+    protected $dispatchesEvents=[
+        'creating'=>UserCreatingEvent::class
+    ];
+
     /**
      * The attributes that are mass assignable.
      *

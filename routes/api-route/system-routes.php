@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 
 use App\Http\Controllers\API\System\AuthController;
+use App\Http\Controllers\API\System\MaintenanceController;
 use App\Http\Controllers\API\System\RoleController;
 use App\Http\Controllers\API\System\UserController;
 use Illuminate\Support\Facades\Session;
@@ -23,6 +24,7 @@ use Illuminate\Support\Facades\Session;
 
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
+Route::resource('maintenance', MaintenanceController::class);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('roles', RoleController::class);

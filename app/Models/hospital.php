@@ -51,6 +51,10 @@ class Hospital extends Model
     {
         return $this->belongsToMany(Speciality::class, 'hospital_speciality','hospital_id','speciality_id');
     }
+    public function speciality()
+    {
+        return $this->belongsToMany(Speciality::class, 'hospital_speciality', 'hospital_id', 'speciality_id');
+    }
 
     public function addCordinates()
     {

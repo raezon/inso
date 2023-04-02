@@ -9,6 +9,6 @@ interface ClinicalRepositoryInterface
     public function getAll();
     public function getById($clinicalId);
     public function deleteById($clinical);
-    public function create(array $dto);
-    public function update($clinicalId, array $clinical);
+    public function create(object $clinical);
+    public function update(object $clinical);
 }

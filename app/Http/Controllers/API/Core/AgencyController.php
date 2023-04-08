@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 class AgencyController extends BaseController
 {
 
-    public function getHospitalBySpeciality(Request $request)
+    public function getAgency(Request $request)
     {
         $name = $request->name ? $request->name : null;
         $commune = $request->commune ? $request->commune : null;

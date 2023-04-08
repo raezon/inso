@@ -17,12 +17,7 @@ class HospitalController extends BaseController
         $this->hospitalRepository = $hospitalRepositoryInterface;
     }
 
-    public function index()
-    {
-        $results = $this->hospitalRepository->getAll();
-
-        return response()->json($results);
-    }
+ 
 
     public function store(Request $request)
     {

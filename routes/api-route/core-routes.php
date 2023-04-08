@@ -2,11 +2,14 @@
 
 use App\Events\Hello;
 use App\Http\Controllers\API\Core\AccountsController;
+use App\Http\Controllers\API\Core\AgencyController;
 use App\Http\Controllers\API\Core\AppointementController;
 use App\Http\Controllers\API\Core\CatalogueController;
+use App\Http\Controllers\API\Core\CribController;
 use App\Http\Controllers\API\Core\HospitalController;
 use App\Http\Controllers\API\Core\RequestUsersController;
 use App\Http\Controllers\API\Core\SpecialityController;
+use App\Http\Controllers\API\Core\UniversityController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +57,12 @@ Route::resource('speciality', SpecialityController::class)->except([
 ]);
 
 Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);
+
+Route::post('agency/filter', [AgencyController::class, 'getAgency']);
+
+Route::post('crib/filter', [CribController::class, 'getCrib']);
+
+Route::post('university/filter', [UniversityController::class, 'getUniversity']);
 
 Route::post('speciality/findByPaginate', [SpecialityController::class, 'findByPaginate']);
 

@@ -19,7 +19,7 @@ class CribController extends BaseController
         //  $pageCount = $request->pageCount;
         $pageCount = 100;
         $result =
-        Clinicalwhen($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
+        Clinical::when($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
             if (!$commune and !$wilaya) {
                 $query->addSelect(DB::raw("name,phone_number,address,commune,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)

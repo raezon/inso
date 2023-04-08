@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Models\Clinical;
+use App\Models\University;
 use Illuminate\Support\Facades\DB;
 
 
@@ -19,7 +20,7 @@ class UniversityController extends BaseController
         //  $pageCount = $request->pageCount;
         $pageCount = 100;
         $result =
-        Clinicalwhen($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
+        University::when($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
             if (!$commune and !$wilaya) {
                 $query->addSelect(DB::raw("name,phone_number,address,commune,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)

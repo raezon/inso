@@ -1,10 +1,12 @@
 <?php
 
 use App\Events\Hello;
+use App\Http\Controllers\API\Shared\AlgeriaCitiesController;
 use App\Http\Controllers\API\Shared\CarouselsController;
 use App\Http\Controllers\API\Shared\CurrentClientsController;
 use App\Http\Controllers\API\Shared\SettingsController;
 use App\Http\Controllers\API\Shared\SocialMediaController;
+use App\Models\AlgeriaCities;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -37,3 +39,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::resource('carousels', CarouselsController::class)->except([
     'Get'
 ]);
+
+Route::post('algeria-cities/communes', [AlgeriaCitiesController::class, 'getCommunes']);
+
+

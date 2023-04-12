@@ -26,6 +26,8 @@ Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
 Route::resource('maintenance', MaintenanceController::class);
 
+Route::resource('maintenance', MaintenanceController::class);
+
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);

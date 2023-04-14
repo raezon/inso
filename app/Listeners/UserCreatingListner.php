@@ -26,6 +26,6 @@ class UserCreatingListner
      */
     public function handle(UserCreatingEvent $event)
     {
-        dd('creation en cour  du user :'.$event->user->name);
+       // dd('creation en cour  du user :'.$event->user->name);
     }
 }

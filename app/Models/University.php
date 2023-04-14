@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $address_displayed
  * @property string $address_url
  * @property string $phone_number
+ * @property string $link
  * @property string $latitude
  * @property string $longitude
  * @property string $wilaya
@@ -31,5 +32,5 @@ class University extends Model
     /**
      * @var array
      */
-    protected $fillable = ['id', 'name', 'image', 'address', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'wilaya', 'commune', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'name', 'image', 'address', 'address_displayed', 'address_url', 'phone_number','link', 'latitude', 'longitude', 'wilaya', 'commune', 'created_at', 'updated_at'];
 }

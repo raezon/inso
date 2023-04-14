@@ -14,7 +14,7 @@ class UserObserver
      */
     public function created(User $user)
     {
-        dd('Utilisateur crée :'.$user->name);
+     //   dd('Utilisateur crée :'.$user->name);
     }
 
     /**

@@ -36,6 +36,10 @@ class CribController extends BaseController
 
                 $query->where('wilaya', '=', $wilaya);
             })
+            ->when($name, function ($query) use ($name) {
+
+                $query->where('name', '=', $name);
+            })
             ->paginate($pageCount);
 
 

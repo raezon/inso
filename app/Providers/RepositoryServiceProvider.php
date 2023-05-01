@@ -10,6 +10,7 @@ use App\Interfaces\Repositories\CarouselsRepositoryInterface;
 use App\Interfaces\Repositories\CurrentClientsRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 use App\Interfaces\Repositories\HospitalRepositoryInterface;
+use App\Interfaces\Repositories\PartnerRepositoryInterface;
 use App\Interfaces\Repositories\RequestUsersRepositoryInterface;
 use App\Interfaces\Repositories\SettingsRepositoryInterface;
 use App\Interfaces\Repositories\SocialMediaRepositoryInterface;
@@ -21,6 +22,7 @@ use App\Repositories\AppointementRepository;
 use App\Repositories\CarouselsRepository;
 use App\Repositories\CurrentClientsRepository;
 use App\Repositories\HospitalRepository;
+use App\Repositories\PartnerRepository;
 use App\Repositories\RequestUsersRepository;
 use App\Repositories\SettingsRepository;
 use App\Repositories\SocialMediaRepository;
@@ -49,8 +51,13 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->registerSocialMedia();
         $this->registerSpeciality();
         $this->registerAppointement();
+        $this->registePartner();
     }
 
+    public function registePartner()
+    {
+        $this->app->bind(PartnerRepositoryInterface::class, PartnerRepository::class);
+    }
     public function registerUser()
     {
         $this->app->bind(UserRepositoryInterface::class, UsersRepository::class);

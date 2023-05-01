@@ -39,7 +39,8 @@ class UniversityController extends BaseController
             })
             ->when($name, function ($query) use ($name) {
 
-                $query->where('name', '=', $name);
+                $query->where('name','LIKE', "%{$name}%");
+
             })
             ->paginate($pageCount);
 

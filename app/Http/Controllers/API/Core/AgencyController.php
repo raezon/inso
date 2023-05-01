@@ -21,14 +21,14 @@ class AgencyController extends BaseController
         //  $pageCount = $request->pageCount;
         $pageCount = 100;
         $result = Agency::when($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
-                if (!$commune and !$wilaya) {
-                    $query->addSelect(DB::raw("name,phone_number,address,commune,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
+            if (!$commune and !$wilaya) {
+                $query->addSelect(DB::raw("name,phone_number,address,commune,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)
                     )/ 1000, 0) as distance"))
 
-                        ->orderBy('distance');
-                }
-            })
+                    ->orderBy('distance');
+            }
+        })
             ->when($commune, function ($query) use ($commune) {
 
                 $query->where('commune', '=', $commune);
@@ -39,7 +39,7 @@ class AgencyController extends BaseController
             })
             ->when($name, function ($query) use ($name) {
 
-                $query->where('name', '=', $name);
+                $query->where('name', 'LIKE', "%{$name}%");
             })
             ->paginate($pageCount);
 
@@ -47,5 +47,4 @@ class AgencyController extends BaseController
 
         return response()->json($result);
     }
-
 }

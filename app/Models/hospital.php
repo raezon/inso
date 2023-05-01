@@ -43,7 +43,7 @@ class Hospital extends Model
     /**
      * @var array
      */
-    protected $fillable = ['speciality_id', 'name', 'image', 'address', 'address_displayed', 'address_url', 'link','phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
+    protected $fillable = ['speciality_id', 'name', 'convention', 'image', 'address', 'address_displayed', 'address_url', 'link','phone_number', 'latitude', 'longitude', 'created_at', 'updated_at', 'country', 'wilaya'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

@@ -7,6 +7,7 @@ use App\Http\Controllers\API\Core\AppointementController;
 use App\Http\Controllers\API\Core\CatalogueController;
 use App\Http\Controllers\API\Core\CribController;
 use App\Http\Controllers\API\Core\HospitalController;
+use App\Http\Controllers\API\Core\PartnerController;
 use App\Http\Controllers\API\Core\RequestUsersController;
 use App\Http\Controllers\API\Core\SpecialityController;
 use App\Http\Controllers\API\Core\UniversityController;
@@ -53,6 +54,9 @@ Route::resource('request-user', RequestUsersController::class)->except([
     'Post'
 ]);
 Route::resource('speciality', SpecialityController::class)->except([
+    'Get'
+]);
+Route::resource('parnter', PartnerController::class)->except([
     'Get'
 ]);
 

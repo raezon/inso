@@ -187,6 +187,7 @@ return [
          * Package Service Providers...
          */
         Geocoder\Laravel\Providers\GeocoderService::class,
+      //  SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -225,6 +226,8 @@ return [
 
     'aliases' => Facade::defaultAliases()->merge([
         // 'ExampleClass' => App\Example\ExampleClass::class,
+        'QrCode' => SimpleSoftwareIO\QrCode\Facades\QrCode::class
+        
     ])->toArray(),
 
 ];

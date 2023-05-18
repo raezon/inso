@@ -19,14 +19,14 @@ class PartnerRepository implements PartnerRepositoryInterface
     }
 
 
-    public function create(object $Partner)
+    public function create(array $data)
     {
-        return $Partner->save();
+        return Partner::create($data);
     }
 
-    public function update(object $Partner)
+    public function update($id, array $data)
     {
-        return $Partner->save();
+        return Partner::where('id', $id)->update($data);
     }
 
     public function deleteById($id)

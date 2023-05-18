@@ -24,6 +24,7 @@ class RequestUsersController extends BaseController
 
     public function store(Request $request)
     {
+
         $request->validate( [
             'name' => 'required',
             'surname' => 'required',

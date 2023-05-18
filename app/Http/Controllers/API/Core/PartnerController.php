@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\Core;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\PartnerRepositoryInterface;
-
+use App\Models\Partner;
 
 class PartnerController extends BaseController
 {
@@ -16,12 +16,15 @@ class PartnerController extends BaseController
 
     public function store(Request $request)
     {
+ 
         $request->validate([
             'name' => 'required',
             'surname' => 'required',
+            'email' => 'nullable',
+            'address' => 'required',
             'phone_number' => 'required',
-            'type' => 'required',
-            'card_id' => 'required',
+            'domaine' => 'required',
+            'message' => 'nullable',
         ]);
 
         $dto = $request->all([]);

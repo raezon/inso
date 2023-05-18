@@ -2,37 +2,54 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Sanctum\HasApiTokens;
 
-/**
- * @property integer $id
- * @property string $uuid
- * @property string $name
- * @property string $surname
- * @property string $age
- * @property string $gender
- * @property string $phone_number
- * @property string $birthdate
- * @property string $addresse
- * @property string $type
- * @property string $card_id
- * @property string $pourcent
- * @property string $couples
- * @property string $childrens
- * @property string $created_at
- * @property string $updated_at
- */
-class Accounts extends Model
+class Accounts extends Authenticatable
 {
+    use HasApiTokens;
+
+    /**
+     * The primary key for the model.
+     *
+     * @var string
+     */
+    protected $primaryKey = 'id';
+
     /**
      * The "type" of the auto-incrementing ID.
-     * 
+     *
      * @var string
      */
     protected $keyType = 'integer';
 
     /**
+     * The attributes that are mass assignable.
+     *
      * @var array
      */
-    protected $fillable = ['uuid', 'name', 'surname','age','gender', 'phone_number', 'birthdate', 'addresse', 'type', 'card_id', 'pourcent', 'childrens','couples', 'created_at', 'updated_at'];
+    protected $fillable = [
+        'uuid',
+        'name',
+        'surname',
+        'age',
+        'gender',
+        'phone_number',
+        'birthdate',
+        'address',
+        'type',
+        'card_id',
+        'pourcent',
+        'couples',
+        'childrens',
+    ];
+
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'api_token'
+    ];
 }

@@ -26,5 +26,5 @@ class Partner extends Model
     /**
      * @var array
      */
-    protected $fillable = ['name', 'surname', 'email', 'phone_number', 'domaine', 'message', 'created_at', 'updated_at'];
+    protected $fillable = ['name', 'surname', 'email', 'address', 'phone_number', 'domaine', 'message', 'created_at', 'updated_at'];
 }

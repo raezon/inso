@@ -56,9 +56,6 @@ Route::resource('request-user', RequestUsersController::class)->except([
 Route::resource('speciality', SpecialityController::class)->except([
     'Get'
 ]);
-Route::resource('parnter', PartnerController::class)->except([
-    'Get'
-]);
 
 Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);
 
@@ -73,3 +70,5 @@ Route::post('speciality/findByPaginate', [SpecialityController::class, 'findByPa
 Route::get('account/findByUuid/{uuid}', [AccountsController::class, 'findOneByUuid']);
 
 Route::post('appointement/create', [AppointementController::class, 'store']);
+
+Route::post('partner/create', [PartnerController::class, 'store']);

@@ -24,7 +24,9 @@ use Illuminate\Support\Facades\Session;
 
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
-Route::resource('maintenance', MaintenanceController::class);
+//assurant
+Route::post('getQrcode', [AuthController::class, 'getQrcode']);
+Route::post('login-assurant', [AuthController::class, 'signInAssurant']);
 
 Route::resource('maintenance', MaintenanceController::class);
 

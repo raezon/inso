@@ -9,6 +9,7 @@ use App\Http\Controllers\API\Core\CribController;
 use App\Http\Controllers\API\Core\HospitalController;
 use App\Http\Controllers\API\Core\PartnerController;
 use App\Http\Controllers\API\Core\RequestUsersController;
+use App\Http\Controllers\API\Core\ReviewsController;
 use App\Http\Controllers\API\Core\SpecialityController;
 use App\Http\Controllers\API\Core\UniversityController;
 use Illuminate\Http\Request;
@@ -33,8 +34,6 @@ use Illuminate\Support\Facades\Session;
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::resource('account', AccountsController::class);
-
     Route::resource('hospital', HospitalController::class)->only([
         'Post', 'Patch', 'Delete'
     ]);
@@ -46,7 +45,11 @@ Route::middleware('auth:sanctum')->group(function () {
         'Post', 'Patch', 'Delete'
     ]);;
 });
+
+
 /** without authentificaiton */
+
+Route::resource('account', AccountsController::class);
 Route::resource('hospital', HospitalController::class)->except([
     'GET'
 ]);
@@ -72,3 +75,5 @@ Route::get('account/findByUuid/{uuid}', [AccountsController::class, 'findOneByUu
 Route::post('appointement/create', [AppointementController::class, 'store']);
 
 Route::post('partner/create', [PartnerController::class, 'store']);
+
+Route::post('reviews/create', [ReviewsController::class, 'store']);

@@ -36,12 +36,13 @@ class Accounts extends Authenticatable
         'gender',
         'phone_number',
         'birthdate',
-        'address',
+        'addresse',
         'type',
         'card_id',
         'pourcent',
         'couples',
         'childrens',
+        'comercial_id'
     ];
 
     /**

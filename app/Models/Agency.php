@@ -31,5 +31,5 @@ class Agency extends Model
     /**
      * @var array
      */
-    protected $fillable = ['id', 'name', 'image', 'address', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'wilaya', 'commune', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'name', 'image','address', 'convention', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'wilaya', 'commune', 'created_at', 'updated_at'];
 }

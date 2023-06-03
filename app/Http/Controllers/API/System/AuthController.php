@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API\System;
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Models\Accounts;
+use App\Models\Ordonance;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use App\Models\User;
@@ -94,7 +95,7 @@ class AuthController extends BaseController
         }
        
 
-        $userDataString = json_encode($account);
+        $userDataString = $account;
 
         $options = new QROptions([
             'outputType' => QRCode::OUTPUT_IMAGE_PNG,
@@ -107,5 +108,37 @@ class AuthController extends BaseController
         $qrCodeImage = $qrcode->render($userDataString);
 
         return response($qrCodeImage)->header('Content-Type', 'image/png');
+    }
+
+    public function getAuthenticatedUser(Request $request)
+    {
+        $token = $request->input('bearerToken');
+
+        // Retrieve the account based on the token
+        $account = Accounts::where('api_token', $token)->first();
+
+        if (!$account) {
+            return $this->sendError('Invalid token');
+        }
+
+
+        return response($account);
+    }
+
+        public function getOrdonance(Request $request)
+    {
+        $token = $request->input('bearerToken');
+
+        // Retrieve the account based on the token
+        $account = Accounts::where('api_token', $token)->first();
+
+
+        if (!$account) {
+            return $this->sendError('Invalid token');
+        }
+
+        $ordonance= Ordonance::where('accout_id', $account->id)->get();
+
+        return response($ordonance);
     }
 }

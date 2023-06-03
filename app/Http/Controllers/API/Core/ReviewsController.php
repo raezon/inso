@@ -36,7 +36,7 @@ class ReviewsController extends BaseController
                 'message' => 'Review stored successfully',
             ]);
         
-        return response()->json($result);
+    
     }
 
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
 use App\Interfaces\Repositories\CarouselsRepositoryInterface;
+use App\Models\Comercial;
 use Illuminate\Support\Facades\Storage;
 use Validator;
 
@@ -32,15 +33,32 @@ class AccountsController extends BaseController
             'phone_number' => 'required',
             'birthdate' => 'required',
             'addresse' => 'required',
+            'couples' => 'required',
+            'childrens' => 'required',
+            'pourcent' => 'required',
+            'age'=>'required',
+            'gender'=> 'required',
             'type' => 'required',
             'card_id' => 'required',
+            'bearerToken'=>'required'
         ]);
 
+        $token = $request->input('bearerToken');
+
+        // Retrieve the account based on the token
+        $comercial = Comercial::where('api_token', $token)->first();
+        
         $dto = $request->all([]);
         $image = Storage::disk('public')->put('accounts', $request->card_id);
         $dto['card_id'] = $image;
-        $result = $this->accountsRepository->create($dto);
-        return response()->json($result);
+
+        if($comercial){
+            $dto['comercial_id'] = $comercial->id;
+            $result = $this->accountsRepository->create($dto);
+            return response()->json($result);
+        }
+
+        return $this->sendError('Invalid token');
     }
     public function findOneByUuid($uuid)
     {

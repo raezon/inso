@@ -4,7 +4,7 @@
 namespace App\Repositories;
 
 use App\Interfaces\Repositories\AgencyRepositoryInterface;
-use App\Models\Agency;
+use App\Models\Assurance;
 
 
 class AgencyRepository implements AgencyRepositoryInterface

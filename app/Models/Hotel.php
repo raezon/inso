@@ -20,14 +20,14 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $created_at
  * @property string $updated_at
  */
-class Agency extends Model
+class Hotel extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'agency';
+    protected $table = 'hotel';
 
     /**
      * The "type" of the auto-incrementing ID.

@@ -14,30 +14,22 @@ use Illuminate\Database\Eloquent\Model;
  * @property string $phone_number
  * @property string $latitude
  * @property string $longitude
- * @property string $country
  * @property string $wilaya
  * @property string $commune
  * @property string $created_at
  * @property string $updated_at
  */
-class Agency extends Model
+class Assurance extends Model
 {
     /**
      * The table associated with the model.
      * 
      * @var string
      */
-    protected $table = 'agency';
-
-    /**
-     * The "type" of the auto-incrementing ID.
-     * 
-     * @var string
-     */
-    protected $keyType = 'integer';
+    protected $table = 'assurance';
 
     /**
      * @var array
      */
-    protected $fillable = ['name', 'image', 'address', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'country', 'wilaya', 'commune', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'name', 'image','address', 'convention', 'address_displayed', 'address_url', 'phone_number', 'latitude', 'longitude', 'wilaya', 'commune', 'created_at', 'updated_at'];
 }

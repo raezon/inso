@@ -30,6 +30,7 @@ Route::post('getAuthenticatedUser-comercial', [ComercialController::class, 'getA
 //doctor
 Route::post('login', [AuthController::class, 'signin']);
 Route::post('register', [AuthController::class, 'signup']);
+Route::post('update-doctor/{id}', [AuthController::class, 'update']);
 //assurant
 Route::post('getQrcode', [AuthController::class, 'getQrcode']);
 Route::post('login-assurant', [AuthController::class, 'signInAssurant']);

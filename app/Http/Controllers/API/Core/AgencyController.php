@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 use App\Interfaces\Repositories\AccountsRepositoryInterface;
 use App\Interfaces\Repositories\AgencyRepositoryInterface;
-use App\Models\Agency;
+use App\Models\Assurance;
 use Illuminate\Support\Facades\DB;
 
 

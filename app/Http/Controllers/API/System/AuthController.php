@@ -11,6 +11,7 @@ use Validator;
 use App\Models\User;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
+use Illuminate\Hashing\BcryptHasher;
 
 class AuthController extends BaseController
 {
@@ -140,5 +141,28 @@ class AuthController extends BaseController
         $ordonance= Ordonance::where('accout_id', $account->id)->get();
 
         return response($ordonance);
+    }
+
+    public function update(Request $request, $id)
+    {
+
+
+        // Retrieve the account based on the token
+        $user = User::where('id', $id)->first();
+        $user->name = $request->input('name');
+        $user->nom = $request->input('nom');
+        $user->prénom = $request->input('prénom');
+
+        $user->email = $request->input('email');
+        $hasher = new BcryptHasher();
+        $user->password = $hasher->make($request->input('password'));
+        $user->save();
+
+        if (!$user) {
+            return $this->sendError('Invalid token');
+        }
+
+
+        return response($user);
     }
 }

@@ -24,8 +24,6 @@ return new class extends Migration
             $table->string('latitude');
             $table->string('longitude');
             $table->string('country');
-            $table->string('wilaya');
-            $table->string('commune');
             $table->timestamps();
         });
     }

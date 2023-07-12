@@ -6,20 +6,21 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
 
 use App\Models\Assurance;
+use App\Models\Hotel;
 use Illuminate\Support\Facades\DB;
 
 
-class AgencyController extends BaseController
+class HotelController extends BaseController
 {
 
-    public function getAssurance(Request $request)
+    public function getHotel(Request $request)
     {
         $name = $request->name ? $request->name : null;
         $commune = $request->commune ? $request->commune : null;
         $wilaya = $request->wilaya ? $request->wilaya : null;
         //  $pageCount = $request->pageCount;
         $pageCount = 1000;
-        $result = Assurance::when($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
+        $result = Hotel::when($request->long and $request->lat, function ($query) use ($request, $commune, $wilaya) {
             if (!$commune and !$wilaya) {
                 $query->addSelect(DB::raw("name,phone_number,address,commune,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
                         POINT('$request->long', '$request->lat'), POINT(longitude, latitude)

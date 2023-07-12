@@ -3,10 +3,12 @@
 use App\Events\Hello;
 use App\Http\Controllers\API\Core\AccountsController;
 use App\Http\Controllers\API\Core\AgencyController;
+use App\Http\Controllers\API\Core\AssiranceController;
 use App\Http\Controllers\API\Core\AppointementController;
 use App\Http\Controllers\API\Core\CatalogueController;
 use App\Http\Controllers\API\Core\CribController;
 use App\Http\Controllers\API\Core\HospitalController;
+use App\Http\Controllers\API\Core\HotelController;
 use App\Http\Controllers\API\Core\PartnerController;
 use App\Http\Controllers\API\Core\RequestUsersController;
 use App\Http\Controllers\API\Core\ReviewsController;
@@ -62,7 +64,9 @@ Route::resource('speciality', SpecialityController::class)->except([
 
 Route::post('hospital/filter', [CatalogueController::class, 'getHospitalBySpeciality']);
 
+Route::post('assurance/filter', [AssuranceController::class, 'getAgency']);
 Route::post('agency/filter', [AgencyController::class, 'getAgency']);
+Route::post('hotel/filter', [HotelController::class, 'getHotel']);
 
 Route::post('crib/filter', [CribController::class, 'getCrib']);
 

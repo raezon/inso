@@ -84,6 +84,34 @@ class AuthController extends BaseController
             'message' => 'User signed in'
         ]);
     }
+    public function signInAssurantWithUuid(Request $request)
+    {
+
+        $request->validate([
+            'uuid' => 'required',
+        ]);
+
+        $user = Accounts::where('uuid', $request->uuid)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Invalid UUID or phone number'], 401);
+        }
+
+        $token = $user->createToken('Token')->plainTextToken;
+        $user->api_token = $token;
+        $user->save();
+
+        return response()->json([
+            'success' => true,
+            'data' => [
+                'token' => $token,
+                'name' => $user->name,
+                'id' => $user->id,
+            ],
+            'message' => 'User signed in'
+        ]);
+    }
+    
     public function getQrcode(Request $request)
     {
         $token = $request->input('bearerToken');

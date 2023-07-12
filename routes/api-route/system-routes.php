@@ -34,6 +34,7 @@ Route::post('update-doctor/{id}', [AuthController::class, 'update']);
 //assurant
 Route::post('getQrcode', [AuthController::class, 'getQrcode']);
 Route::post('login-assurant', [AuthController::class, 'signInAssurant']);
+Route::post('login-assurant-uuid', [AuthController::class, 'signInAssurantWithUuid']);
 Route::post('getAuthenticatedUser', [AuthController::class, 'getAuthenticatedUser']);
 Route::post('getOrdonance', [AuthController::class, 'getOrdonance']);
 

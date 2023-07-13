@@ -4,16 +4,32 @@ namespace App\Http\Controllers\API\Core;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\API\Base\BaseController as BaseController;
-
+use App\Models\Accounts;
 use App\Models\Assurance;
 use Illuminate\Support\Facades\DB;
 
 
-class AgencyController extends BaseController
+class AnalyseController extends BaseController
 {
 
-    public function getAgency(Request $request)
+    public function create(Request $request)
     {
+
+        $token = $request->header('Authorization');
+        if (!$token) {
+            return response()->json(['message' => 'Unauthorized'], 401);
+        }
+
+        // Extract the token from the "Bearer" authentication scheme
+        $token = str_replace('Bearer ', '', $token);
+
+        $user = Accounts::where('api_token', $token)->first();
+
+        if (!$user) {
+            return response()->json(['message' => 'Invalid UUID or phone number'], 401);
+        }
+
+
         $name = $request->name ? $request->name : null;
         $commune = $request->commune ? $request->commune : null;
         $wilaya = $request->wilaya ? $request->wilaya : null;

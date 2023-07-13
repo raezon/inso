@@ -18,6 +18,7 @@ return new class extends Migration
             $table->date('date_depart');
             $table->date('date_arriver');
             $table->string('num_cart');
+            $table->string('pdf');
             $table->bigInteger('account_id')->unsigned()->index()->nullable();
             $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
             $table->timestamps();

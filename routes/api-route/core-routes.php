@@ -3,6 +3,8 @@
 use App\Events\Hello;
 use App\Http\Controllers\API\Core\AccountsController;
 use App\Http\Controllers\API\Core\AgencyController;
+use App\Http\Controllers\API\Core\AmbulanceController;
+use App\Http\Controllers\API\Core\AnalyseController;
 use App\Http\Controllers\API\Core\AssiranceController;
 use App\Http\Controllers\API\Core\AppointementController;
 use App\Http\Controllers\API\Core\CatalogueController;
@@ -81,3 +83,5 @@ Route::post('appointement/create', [AppointementController::class, 'store']);
 Route::post('partner/create', [PartnerController::class, 'store']);
 
 Route::post('reviews/create', [ReviewsController::class, 'store']);
+Route::post('ambulance/create', [AmbulanceController::class, 'create']);
+Route::post('analyse/create', [AnalyseController::class, 'create']);

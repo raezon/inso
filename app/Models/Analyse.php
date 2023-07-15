@@ -33,7 +33,7 @@ class Analyse extends Model
     /**
      * @var array
      */
-    protected $fillable = ['account_id', 'date_depart', 'date_arriver', 'num_cart', 'created_at', 'updated_at'];
+    protected $fillable = ['account_id', 'date_depart', 'date_arriver', 'num_cart','pdf', 'created_at', 'updated_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

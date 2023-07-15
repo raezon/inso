@@ -91,24 +91,24 @@ class AuthController extends BaseController
             'uuid' => 'required',
         ]);
 
-        $user = Accounts::where('uuid', $request->uuid)->first();
+        $account = Accounts::where('uuid', $request->uuid)->first();
 
-        if (!$user) {
+        if (!$account) {
             return response()->json(['message' => 'Invalid UUID or phone number'], 401);
         }
 
-        $token = $user->createToken('Token')->plainTextToken;
-        $user->api_token = $token;
-        $user->save();
+        $token = $account->createToken('Token')->plainTextToken;
+        $account->api_token = $token;
+        $account->save();
 
         return response()->json([
             'success' => true,
             'data' => [
                 'token' => $token,
-                'name' => $user->name,
-                'id' => $user->id,
+                'name' => $account->name,
+                'id' => $account->id,
             ],
-            'message' => 'User signed in'
+            'message' => 'Account signed in'
         ]);
     }
     

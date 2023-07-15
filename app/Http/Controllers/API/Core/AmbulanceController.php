@@ -18,11 +18,14 @@ class AmbulanceController extends BaseController
             return response()->json(['message' => 'Unauthorized'], 401);
         }
 
+     
         // Extract the token from the "Bearer" authentication scheme
         $token = str_replace('Bearer ', '', $token);
 
+ 
         $user = Accounts::where('api_token', $token)->first();
 
+    
         if (!$user) {
             return response()->json(['message' => 'Invalid UUID or phone number'], 401);
         }

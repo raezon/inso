@@ -32,11 +32,20 @@ class CatalogueController extends BaseController
         })
             ->when($request->long and $request->lat, function ($query) use ($request, $country, $wilaya) {
                 if (!$country and !$wilaya) {
-                    $query->addSelect(DB::raw("name,phone_number,address,country,wilaya ,longitude,latitude,image,round(ST_Distance_Sphere(
-                        POINT('$request->long', '$request->lat'), POINT(longitude, latitude)
-                    )/ 1000, 0) as distance"))
-
-                        ->orderBy('distance');
+                $query->select(
+                    'name',
+                    'phone_number',
+                    'address',
+                    'country',
+                    'wilaya',
+                    'longitude',
+                    'latitude',
+                    'image',
+                    DB::raw("ROUND(ST_Distance_Sphere(
+                POINT('$request->long', '$request->lat'), POINT(longitude, latitude)
+            ) / 1000, 0) as distance")
+                )
+                    ->orderBy('distance');
                 }
             })
             ->when($country, function ($query) use ($country) {

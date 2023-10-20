@@ -38,7 +38,9 @@ Route::post('login-assurant-uuid', [AuthController::class, 'signInAssurantWithUu
 Route::post('getAuthenticatedUser', [AuthController::class, 'getAuthenticatedUser']);
 Route::post('getOrdonance', [AuthController::class, 'getOrdonance']);
 
-Route::resource('maintenance', MaintenanceController::class);
+//Route::resource('maintenance', MaintenanceController::class);
+Route::post('maintenance', [MaintenanceController::class, 'show']);
+Route::get('maintenance/fetch', [MaintenanceController::class, 'fetch']);
 
 Route::middleware('auth:sanctum')->group(function () {
     Route::resource('roles', RoleController::class);
